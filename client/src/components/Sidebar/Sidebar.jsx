@@ -9,9 +9,9 @@ const Sidebar = ({ className, onUserClick, users, setSelectedUser, darkMode }) =
       };
 
     return (
-        <div className={`${className} w-full md:w-1/3 h-screen bg-gray-100 border-r flex flex-col ${darkMode && 'bg-gray-900 text-white'}`}>
+        <div className={`${className} w-full md:w-1/3 h-screen bg-gray-100 border-r rounded-3xl flex flex-col ${darkMode && 'bg-gray-900 text-white'}`}>
             {/* User Profile */}
-            <UserProfile className="p-3 border-b" darkMode={darkMode}/>
+            <UserProfile className="p-3 border-b" darkMode={darkMode} users={users}/>
 
             {/* Search Bar */}
             <SearchBar className="p-2 border-b" darkMode={darkMode}/>
@@ -20,6 +20,7 @@ const Sidebar = ({ className, onUserClick, users, setSelectedUser, darkMode }) =
             <div className="flex-1 overflow-y-auto">
                 {users.map((user) => (
                     <ChatListItem
+                        darkMode={darkMode}
                         key={user.id}                                       // Unique key
                         user={user}                                         // Pass user data as props
                         onClick={() =>{

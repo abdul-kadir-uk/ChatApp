@@ -5,10 +5,11 @@ import { useState } from "react";
 import SettingsModal from "../../features/SettingsModal";
 import ChatModal from "../../features/ChatModal";
 
-const UserProfile = ({darkMode}) => {
+const UserProfile = ({darkMode, users}) => {
 
     const [chatModal, setChatModal] = useState(false);
     const [settingsModal, setSettingsModal] = useState(false);
+    const [userName, setUserName] = useState("Uday Kalyan")
 
     const openChatModal = () => {
         setChatModal(true);
@@ -20,7 +21,7 @@ const UserProfile = ({darkMode}) => {
 
 
     return (
-        <div className={`p-3 border-b bg-white flex items-center justify-between md:p-4 ${darkMode && 'bg-gray-900 text-white'}`}>
+        <div className={`p-3 border border-green-500 rounded-3xl flex items-center justify-between md:p-4 ${darkMode && 'bg-gray-900 text-white'}`}>
             {/* User Avatar */}
             <a href="/login"><div className="flex items-center">
                 <img
@@ -29,7 +30,7 @@ const UserProfile = ({darkMode}) => {
                     className="w-10 h-10 md:w-12 md:h-12 rounded-full"
                 />
                 <span className="ml-2 md:ml-3 font-semibold text-sm md:text-base">
-                    Uday Kalyan
+                    {userName}
                 </span>
             </div></a>
 
@@ -51,11 +52,11 @@ const UserProfile = ({darkMode}) => {
 
 
             {/* Chat Modal */}
-            {chatModal && <ChatModal setChatModal={setChatModal} />}
+            {chatModal && <ChatModal setChatModal={setChatModal} darkMode={darkMode} users={users}/>}
 
 
             {/* Settings Modal */}
-            {settingsModal && <SettingsModal setSettingsModal={setSettingsModal} />}
+            {settingsModal && <SettingsModal setSettingsModal={setSettingsModal} darkMode={darkMode}/>}
 
 
         </div>
